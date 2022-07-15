@@ -1,6 +1,15 @@
 package com.dufuna.berlin.kutembachinambu.lekki.service;
 
+
+import com.dufuna.berlin.kutembachinambu.lekki.repository.SimpleLekkiPropertyRepositoryImpl;
+
 public interface LekkiPropertyService {
-    void saveProperty(String LekkiProperty);
-    String getProperty();
-}
+
+
+          void saveProperty(Object LekkiProperty);
+
+
+          Object getProperty(int propertyId);
+
+          Object getProperties();
+};
