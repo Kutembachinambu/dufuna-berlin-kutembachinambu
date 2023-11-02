@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Component
 @SpringBootApplication
+@EnableJpaRepositories(basePackages = "com.dufuna.berlin.kutembachinambu.tax.repository")
 public class TaxApplication implements CommandLineRunner{
     @Autowired
 	private TaxCalcImpl service;
@@ -30,7 +32,7 @@ public class TaxApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		service.calculateTax(10000f);
+		service.calculateTax(120000f);
 
 	}
 }

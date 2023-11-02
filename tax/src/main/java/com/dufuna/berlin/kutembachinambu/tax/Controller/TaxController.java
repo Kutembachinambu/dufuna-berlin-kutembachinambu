@@ -4,6 +4,7 @@ import java.util.List;
 import com.dufuna.berlin.kutembachinambu.tax.exceptions.TaxBracketNotFoundException;
 import com.dufuna.berlin.kutembachinambu.tax.model.TaxBracket;
 import com.dufuna.berlin.kutembachinambu.tax.repository.TaxBracketRepository;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 @RestController
+
 
 class TaxController {
     private final TaxBracketRepository repository;
@@ -29,14 +31,14 @@ class TaxController {
     // end::get-aggregate-root[]
 
     @PostMapping("/taxBracket")
-    TaxBracket newTaxBracket(@RequestBody TaxBracket newEmployee) {
-        return repository.save(newEmployee);
+    TaxBracket newTaxBracket(@RequestBody TaxBracket newBracket) {
+        return repository.save(newBracket);
     }
 
     // Single item
 
     @GetMapping("/taxBracket/{id}")
-    TaxBracket one(@PathVariable Long id) {
+    TaxBracket one(@PathVariable Integer id) {
 
         return repository.findById(id)
                 .orElseThrow(() -> new TaxBracketNotFoundException(id));
@@ -58,7 +60,7 @@ class TaxController {
     }*/
 
     @DeleteMapping("/taxBracket/{id}")
-    void deleteTaxBracket(@PathVariable Long id) {
+    void deleteTaxBracket(@PathVariable Integer id) {
         repository.deleteById(id);
     }
 

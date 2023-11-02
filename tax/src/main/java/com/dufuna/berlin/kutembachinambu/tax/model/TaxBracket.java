@@ -1,16 +1,14 @@
 package com.dufuna.berlin.kutembachinambu.tax.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 @Entity
+@Table(name = "tax_brackets")
 public class TaxBracket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "taxBracket_id")
-    private Long id;
+    @Column(name = "id")
+    private int id;
 
     @Column(nullable = false)
     private float bracketStart;
@@ -32,7 +30,7 @@ public class TaxBracket {
         this.dueTax = dueTax;
         this.rate = rate;
     }
-    public TaxBracket(Long id, Float bracketStart,Float bracketEnd, Float dueTax, Float rate){
+    public TaxBracket(Integer id, Float bracketStart,Float bracketEnd, Float dueTax, Float rate){
         this.id = id;
         this.bracketStart = bracketStart;
         this.bracketEnd = bracketEnd;
@@ -41,10 +39,10 @@ public class TaxBracket {
     }
 
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
