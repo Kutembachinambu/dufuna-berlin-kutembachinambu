@@ -12,9 +12,12 @@ import java.util.ListIterator;
 
 @Service
 public class TaxCalcImpl implements TaxCalcuation {
+    private final TaxBracketRepository taxBracketRepository;
 
     @Autowired
-    private TaxBracketRepository taxBracketRepository;
+    public TaxCalcImpl(TaxBracketRepository taxBracketRepository) {
+        this.taxBracketRepository = taxBracketRepository;
+    }
 
     @Override
     public Float calculateTax(Float amount) {
@@ -24,11 +27,11 @@ public class TaxCalcImpl implements TaxCalcuation {
         for(TaxBracket bracket: taxBrackets){
             if(amount>=bracket.getBracketStart() && amount<=bracket.getBracketEnd()){
                 tax= bracket.getDueTax() + (amount-bracket.getBracketStart())* bracket.getRate();
-                //tax = (amount- (bracket.getBracketStart()* bracket.getRate()) + bracket.getDueTax());
                 System.out.println("The tax Due is" +tax);
                 break;
             }
         }
+
         return tax;
     }
 }
